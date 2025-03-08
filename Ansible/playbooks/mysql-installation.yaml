@@ -1,0 +1,16 @@
+- name: mysql installation
+  hosts: db
+  become: yes
+  become_user: root
+  tasks:
+    - name: run apt-get update
+      apt:
+        update_cache: yes
+    - name: mysql installation
+      apt:
+        name: mysql-server
+        state: present
+    - name: start mysql service
+      systemd:
+        name: mysql-server
+        state: restarted

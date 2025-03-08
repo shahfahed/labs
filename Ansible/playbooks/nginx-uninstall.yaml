@@ -1,0 +1,16 @@
+- name: nginx uninstallation
+  host: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: stop nginx
+      systemd:
+        name: nginx
+        state: stopped
+    - name: uninstall nginx
+      apt:
+        name: nginx
+        state: absent
+        purge: ture
+        autoremove: true
+        

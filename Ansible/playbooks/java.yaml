@@ -1,0 +1,18 @@
+- name: jdk installation
+  hosts: all
+  become: yes
+  become_user: yes
+  tasks:
+    - name: run apt-get updte
+      apt:
+        update_cache: yes
+    - name: install jdk
+      apt:
+        name: openjdk-11-jdk
+        state: present
+    - name: capture java version
+      shell: java --version
+      register: jversion
+    - name: print java version
+      debug:
+        var: jversion

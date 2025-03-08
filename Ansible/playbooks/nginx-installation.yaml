@@ -1,0 +1,16 @@
+- name: install nginx
+  hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: apt update
+      apt:
+        update_cahce: yes
+    - name: nginx installation
+      apt:
+        name: nginx
+        state: present
+    - name: start nginx service
+      systemd:
+        name: nginx
+        state: restarted

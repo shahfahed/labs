@@ -1,0 +1,13 @@
+- name: apache2 uninstallation
+  hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: stop apache2
+      systemd:
+        name: nginx
+        state: stopped
+    - name: uninstall apache2
+      apt:
+        name: apache2
+        state: absent
