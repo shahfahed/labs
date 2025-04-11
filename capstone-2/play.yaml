@@ -1,0 +1,21 @@
+- name: jenkins master configurations
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: execute j-master tasks
+    script: jmaster.sh
+
+
+- name: jenkins worker configurations
+  hosts: jworker
+  become: yes
+  tasks:
+  - name: execute j-worker tasks
+    script: jworker.sh
+
+- name: k8s configuration
+  hosts: k8s
+  become: yes
+  tasks:
+  - name: execute k8s tasks
+    script: jworker.sh
